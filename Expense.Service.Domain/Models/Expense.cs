@@ -6,8 +6,8 @@ namespace ExpenseService.Domain.Models
     {
         public string Name { get; private set; }
         public string? Description { get; private set; }
-        public decimal Value { get; private set; }
-        public DateTime ExpenseDate { get; private set; }
+        public decimal Value { get; private set; } = 0;
+        public DateTime ExpenseDate { get; private set; } = DateTime.UtcNow;
         public int ExpenseTypeId { get; private set; }
 
         public int AccountId { get; private set; }
