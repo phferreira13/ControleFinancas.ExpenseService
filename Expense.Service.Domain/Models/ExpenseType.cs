@@ -8,6 +8,8 @@ namespace ExpenseService.Domain.Models
         public string? Description { get; private set; }
         public int UserId { get; private set; }
 
+        public IEnumerable<Expense>? Expenses { get; private set; }
+
         public ExpenseType(string name, int userId, string? description = null)
         {
             Name = name;
