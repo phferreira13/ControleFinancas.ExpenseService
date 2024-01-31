@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseService.EFConfiguration.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    [Migration("20240126030533_Initial")]
-    partial class Initial
+    [Migration("20240131234255_Update_Expense")]
+    partial class Update_Expense
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,12 @@ namespace ExpenseService.EFConfiguration.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Paid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("PaidAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")

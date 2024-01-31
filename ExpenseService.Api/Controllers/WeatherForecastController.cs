@@ -29,5 +29,19 @@ namespace ExpenseService.Api.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("teste-account-service")]
+        public async Task<IActionResult> TesteAccountService()
+        {
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:44300/"),
+               
+            };
+
+            var response = await client.GetAsync("api/users");
+            var content = await response.Content.ReadAsStringAsync();
+            return Ok(content);
+        }
     }
 }

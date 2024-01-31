@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExpenseService.EFConfiguration.Migrations
 {
-    [DbContext(typeof(ExpenseServiceContext))]
+    [DbContext(typeof(ExpenseDbContext))]
     partial class ExpenseServiceContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -45,6 +45,12 @@ namespace ExpenseService.EFConfiguration.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Paid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("PaidAt")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
