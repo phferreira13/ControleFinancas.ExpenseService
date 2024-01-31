@@ -8,10 +8,11 @@ namespace ExpenseService.EFConfiguration.Startup
     {
         public static void AddEntityFramework(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ExpenseServiceContext>(options =>
+            services.AddDbContext<ExpenseDbContext>(options =>
             {
                 options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddRepositories();
         }
     }
 }

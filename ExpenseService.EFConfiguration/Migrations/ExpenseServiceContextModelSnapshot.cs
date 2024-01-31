@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExpenseService.EFConfiguration.Migrations
 {
-    [DbContext(typeof(ExpenseServiceContext))]
+    [DbContext(typeof(ExpenseDbContext))]
     partial class ExpenseServiceContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
