@@ -3,6 +3,7 @@ using System;
 using ExpenseService.EFConfiguration.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpenseService.EFConfiguration.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    partial class ExpenseServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20240131234255_Update_Expense")]
+    partial class Update_Expense
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
