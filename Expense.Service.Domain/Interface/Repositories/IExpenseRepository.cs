@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace ExpenseService.Domain.Interface.Repositories
 {
-    public interface IExpenseRepository
+    public interface IExpenseRepository : IRepository<Expense>
     {
         Task<IEnumerable<Expense>> GetExpensesByFilter(ExpenseFilter filter);
+        Task<Expense> AddAsync(Expense expense);
     }
 }

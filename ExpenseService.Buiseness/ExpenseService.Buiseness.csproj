@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Expense.Service.Domain\ExpenseService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\ExpenseTypes\Queries\" />
+  </ItemGroup>
+
 </Project>

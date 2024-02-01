@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExpenseService.Domain.Filters.Expenses
 {
-    public class ExpenseFilter
+    public class ExpenseFilter : IQueryFilter<Expense>
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
@@ -16,7 +16,7 @@ namespace ExpenseService.Domain.Filters.Expenses
         public DateTime? ExpenseDate { get; set; }
         public EEntityStatus? Status { get; set; } = EEntityStatus.Active;
 
-        public IQueryable<Expense> ApplyFilter(IQueryable<Expense> query)
+        public IQueryable<Expense> ApplyFilterTo(IQueryable<Expense> query)
         {
             if (!string.IsNullOrEmpty(Name))
                 query = query.Where(e => e.Name == Name);
