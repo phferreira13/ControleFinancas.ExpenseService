@@ -1,6 +1,7 @@
 ﻿using ExpenseService.Domain.Interface.Repositories;
 using ExpenseService.EFConfiguration.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace ExpenseService.EFConfiguration.Startup
 {
@@ -8,7 +9,16 @@ namespace ExpenseService.EFConfiguration.Startup
     {
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IExpenseRepository, ExpenseRepository>();
+            var assembly = Assembly.GetExecutingAssembly();
+
+            var repositoryTypes = assembly.GetTypes()
+                .Where(t => t.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRepository<>)) && !t.IsAbstract && !t.IsInterface);
+
+            foreach (var type in repositoryTypes)
+            {
+                var interfaceType = type.GetInterfaces().First(i => i.Name == $"I{type.Name}");
+                services.AddScoped(interfaceType, type);
+            }
         }
     }
 }
