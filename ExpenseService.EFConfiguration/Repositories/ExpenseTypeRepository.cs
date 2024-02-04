@@ -1,4 +1,6 @@
-﻿using ExpenseService.Domain.Interface.Repositories;
+﻿using ExpenseService.Domain.Extensions;
+using ExpenseService.Domain.Filters.ExpenseTypes;
+using ExpenseService.Domain.Interface.Repositories;
 using ExpenseService.EFConfiguration.Context;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,17 @@ namespace ExpenseService.EFConfiguration.Repositories
             await expenseTypes.AddAsync(expenseType);            
             await _context.SaveChangesAsync();
             return expenseType;
+        }
+
+        public async Task<IEnumerable<ExpenseType>> GetExpenseTypesByFilterAsync(ExpenseTypeFilter filter)
+        {
+            var query = expenseTypes.ApplyFilter(filter);
+            return await query.ToListAsync();
+        }
+
+        public async Task<ExpenseType?> GetExpenseTypeByIdAsync(int id)
+        {
+            return await expenseTypes.FirstOrDefaultAsync(e => e.Id == id);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace ExpenseService.EFConfiguration.Repositories
         private readonly DbSet<Expense> expenses = context.Expenses;
 
 
-        public async Task<IEnumerable<Expense>> GetExpensesByFilter(ExpenseFilter filter)
+        public async Task<IEnumerable<Expense>> GetExpensesByFilterAsync(ExpenseFilter filter)
         {
             var query = expenses.ApplyFilter(filter);
             return await query.ToListAsync();
