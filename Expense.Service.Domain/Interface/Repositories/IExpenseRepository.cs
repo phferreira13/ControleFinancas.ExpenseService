@@ -10,7 +10,7 @@ namespace ExpenseService.Domain.Interface.Repositories
 {
     public interface IExpenseRepository : IRepository<Expense>
     {
-        Task<IEnumerable<Expense>> GetExpensesByFilter(ExpenseFilter filter);
+        Task<IEnumerable<Expense>> GetExpensesByFilterAsync(ExpenseFilter filter);
         Task<Expense> AddAsync(Expense expense);
     }
 }

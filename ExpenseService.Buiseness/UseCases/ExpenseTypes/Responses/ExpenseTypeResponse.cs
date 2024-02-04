@@ -20,6 +20,9 @@ namespace ExpenseService.Buiseness.UseCases.ExpenseTypes.Responses
 
         public static implicit operator ExpenseTypeResponse(ExpenseType expenseType)
         {
+            if (expenseType == null)
+                return null;
+
             return new ExpenseTypeResponse
             {
                 Id = expenseType.Id,

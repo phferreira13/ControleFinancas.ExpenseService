@@ -18,7 +18,7 @@ namespace ExpenseService.Buiseness.UseCases.Expenses.Queries
         public string? Description { get; set; }
         public int? ExpenseTypeId { get; set; }
         public DateTime? Date { get; set; }
-        public EEntityStatus? Status { get; set; } = EEntityStatus.Active;
+        public List<EEntityStatus>? Status { get; set; } = [EEntityStatus.Active];
 
         public static implicit operator ExpenseFilter(GetExpensesByFilterQuery query)
         {
@@ -42,13 +42,10 @@ namespace ExpenseService.Buiseness.UseCases.Expenses.Queries
 
                 await apiResult.ExecuteAsync(
                     func: async () =>
-                        (await _expenseRepository.GetExpensesByFilter(request))
+                        (await _expenseRepository.GetExpensesByFilterAsync(request))
                             .ToList().ConvertAll<ExpenseResponse>(e => e)
                 );
-
                 return apiResult;
-
-
             }
         }
     }
